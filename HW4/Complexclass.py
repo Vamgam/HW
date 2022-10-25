@@ -57,6 +57,15 @@ class Complex():
             return Complex(self._a/other,self._b/other)
         if type(other)==Complex:
             return Complex((self._a*other._a+self._b*other._b)/(other._a**2+other._b**2)**(1/2),(-self._a*other._b-self._b*other._a)/(other._a**2+other._b**2)**(1/2))
+    def __abs__(self):
+        return (self._a**2+self._b**2)**(0.5)
+    def __getitem__(self, item):
+        if item==0:
+            return self._a
+        elif item==1:
+            return self._b
+        else:
+            raise IndexError
     def to_exp(self):
         return self._r,self._phi
 A=Complex(3,4)
@@ -64,4 +73,5 @@ B=Complex(5,6)
 C=Complex(4,0)
 D=Complex()
 print(C.a)
-print(C,A,D, D.to_exp())
+print(C,A,D, D.to_exp(),abs(A),A[0])
+print(C+A,C-A,C*A,C/A)
